@@ -26,9 +26,39 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore compiled assets and node modules
 /public/packs
 /public/packs-test
 /node_modules
+
+# Ignore yarn logs and integrity files
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Database dumps and configs
+*.dump
+*.sql
+/config/database.yml
+dump.rdb
+
+# Coverage reports
+/coverage/
+
+# Mac OS specific
+.DS_Store
+
+# Rails specific
+/public/assets
+/config/credentials/*.key
