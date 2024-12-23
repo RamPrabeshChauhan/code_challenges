@@ -1,6 +1,8 @@
 module Api
   module V1
     class ChallengesController < ApplicationController
+      before_action :set_challenge, only: [:show, :update, :destroy]
+
       # GET /api/v1/challenges
       def index
         @challenge = Challenge.all
@@ -9,9 +11,8 @@ module Api
 
       # GET /api/v1/challenges/:id
       def show
-        challenge = Challenge.find_by(id: params[:id])
-        if challenge
-          render json: challenge
+        if @challenge
+          render json: @challenge
         else
           render json: { message: "Challenge with ID #{params[:id]} not found" }, status: :not_found
         end
@@ -33,12 +34,11 @@ module Api
 
       # PUT /api/v1/challenges/:id
       def update
-        challenge = Challenge.find_by(id: params[:id])
-        if challenge
-          if challenge.update(challenge_params)
-        render json: { message: 'Challenge updated successfully', data: challenge }, status: :ok
+        if @challenge
+          if @challenge.update(challenge_params)
+        render json: { message: 'Challenge updated successfully', data: @challenge }, status: :ok
           else
-        render json: { message: 'Failed to update challenge', data: challenge.errors }, status: :unprocessable_entity
+        render json: { message: 'Failed to update challenge', data: @challenge.errors }, status: :unprocessable_entity
           end
         else
           render json: { message: "Challenge with ID #{params[:id]} not found" }, status: :not_found
@@ -47,9 +47,8 @@ module Api
 
       # DELETE /api/v1/challenges/:id
       def destroy
-        challenge = Challenge.find_by(id: params[:id])
-        if challenge
-          challenge.destroy
+        if @challenge
+          @challenge.destroy
           render json: { message: "Challenge with ID #{params[:id]} has been deleted" }, status: :ok
         else
           render json: { message: "Challenge with ID #{params[:id]} not found" }, status: :not_found
@@ -57,6 +56,10 @@ module Api
       end
 
       private
+
+      def set_challenge
+        @challenge = Challenge.find_by(id: params[:id])
+      end
 
       def challenge_params
         params.require(:challenge).permit(:title, :description, :start_date, :end_date)
