@@ -33,11 +33,15 @@ module Api
 
       # PUT /api/v1/challenges/:id
       def update
-        challenge = Challenge.find(params[:id])
-        if challenge.update(challenge_params)
-          render json: challenge
+        challenge = Challenge.find_by(id: params[:id])
+        if challenge
+          if challenge.update(challenge_params)
+        render json: { message: 'Challenge updated successfully', data: challenge }, status: :ok
+          else
+        render json: { message: 'Failed to update challenge', data: challenge.errors }, status: :unprocessable_entity
+          end
         else
-          render json: challenge.errors, status: :unprocessable_entity
+          render json: { message: "Challenge with ID #{params[:id]} not found" }, status: :not_found
         end
       end
 
