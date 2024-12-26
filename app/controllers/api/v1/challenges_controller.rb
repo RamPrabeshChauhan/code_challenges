@@ -25,9 +25,9 @@ module Api
         else
           challenge = Challenge.new(challenge_params)
           if challenge.save
-        render json: { message: 'Challenge added successfully', data: challenge }, status: :created
+            render json: { message: 'Challenge added successfully', data: challenge }, status: :created
           else
-        render json: { message: 'Failed to add challenge', data: challenge.errors }, status: :unprocessable_entity
+            render json: { message: 'Failed to add challenge', data: challenge.errors }, status: :unprocessable_entity
           end
         end
       end
@@ -36,9 +36,9 @@ module Api
       def update
         if @challenge
           if @challenge.update(challenge_params)
-        render json: { message: 'Challenge updated successfully', data: @challenge }, status: :ok
+            render json: { message: 'Challenge updated successfully', data: @challenge }, status: :ok
           else
-        render json: { message: 'Failed to update challenge', data: @challenge.errors }, status: :unprocessable_entity
+            render json: { message: 'Failed to update challenge', data: @challenge.errors }, status: :unprocessable_entity
           end
         else
           render json: { message: "Challenge with ID #{params[:id]} not found" }, status: :not_found
