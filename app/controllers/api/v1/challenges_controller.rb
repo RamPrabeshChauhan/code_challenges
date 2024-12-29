@@ -1,7 +1,7 @@
 module Api
   module V1
     class ChallengesController < ApplicationController
-      before_action :set_challenge, only: [:show, :update, :destroy]
+      before_action :set_challenge, only: %i[show update destroy]
 
       # GET /api/v1/challenges
       def index
@@ -21,7 +21,8 @@ module Api
       # POST /api/v1/challenges
       def create
         if Challenge.exists?(title: challenge_params[:title]) || Challenge.exists?(description: challenge_params[:description])
-          render json: { message: 'Challenge with the same title or description already exists' }, status: :unprocessable_entity
+          render json: { message: 'Challenge with the same title or description already exists' },
+                 status: :unprocessable_entity
         else
           challenge = Challenge.new(challenge_params)
           if challenge.save
@@ -38,7 +39,8 @@ module Api
           if @challenge.update(challenge_params)
             render json: { message: 'Challenge updated successfully', data: @challenge }, status: :ok
           else
-            render json: { message: 'Failed to update challenge', data: @challenge.errors }, status: :unprocessable_entity
+            render json: { message: 'Failed to update challenge', data: @challenge.errors },
+                   status: :unprocessable_entity
           end
         else
           render json: { message: "Challenge with ID #{params[:id]} not found" }, status: :not_found
