@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.10'
+ruby '3.3.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.10'
@@ -29,7 +29,7 @@ gem 'sprockets-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -39,6 +39,31 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "webpacker", "~> 5.4"
+gem 'webpacker', '~> 5.4'
+
+gem 'rubocop', require: false
+
+# mutex_m - Provides a mutex (mutual exclusion) module for thread synchronization
+# Uses:
+# - Protect shared resources in multi-threaded applications
+# - Prevent race conditions when multiple threads access same data
+# - Implement thread-safe operations
+gem 'mutex_m'
+
+# base64 - For encoding and decoding Base64 data
+# Uses:
+# - Encode binary data to text for email attachments
+# - Handle image data in data URIs
+# - Encode authentication credentials
+# - Process binary files for API transmissions
+gem 'base64'
+
+# bigdecimal - Provides arbitrary-precision decimal arithmetic
+# Uses:
+# - Financial calculations requiring exact precision
+# - Scientific computations where floating-point errors are unacceptable
+# - Currency operations and accounting
+# - Mathematical operations requiring high accuracy
+gem 'bigdecimal'
