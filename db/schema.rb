@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveRecord::Schema.define(version: 20_241_219_070_422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'

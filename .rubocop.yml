@@ -10,5 +10,8 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'test/**/*.rb'
 
-Style/FrozenStringLiteralComment:
+Style/Documentation:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
