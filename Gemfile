@@ -45,7 +45,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'webpacker', '~> 5.4'
 
-gem 'rubocop', require: false
+gem 'rubocop', '~> 1.69', require: false
 
 # mutex_m - Provides a mutex (mutual exclusion) module for thread synchronization
 # Uses:
@@ -69,3 +69,9 @@ gem 'base64'
 # - Currency operations and accounting
 # - Mathematical operations requiring high accuracy
 gem 'bigdecimal'
+
+gem 'devise', '~> 4.9'
+
+gem 'rack-cors'
+
+gem 'devise-jwt'
